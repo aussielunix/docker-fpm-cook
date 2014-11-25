@@ -4,15 +4,14 @@ MAINTAINER Mick Pollard <aussielunix@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true
 
-ENV LC_CTYPE en_US.UTF-8
-ENV LANG en_US.UTF-8
-
+#ENV LC_ALL en_US.UTF-8
+#ENV LANG en_US.UTF-8
 
 RUN apt-get update && apt-get install -y \
     git \
     curl \
     build-essential \
-    ruby1.9.1-full \
+    ruby \
     libssl-dev \
     libreadline-dev \
     libxslt1-dev \
@@ -22,4 +21,4 @@ RUN apt-get update && apt-get install -y \
     libexpat1-dev \
     libicu-dev
 
-RUN gem install fpm-cookery
+RUN LANG="en_US.UTF-8" LC_ALL="en_US.UTF-8" gem install fpm-cookery
