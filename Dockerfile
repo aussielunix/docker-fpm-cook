@@ -1,24 +1,36 @@
-FROM stackbrew/ubuntu:trusty
+FROM ubuntu:14.04.1
 MAINTAINER Mick Pollard <aussielunix@gmail.com>
 
-ENV DEBIAN_FRONTEND noninteractive
-ENV DEBCONF_NONINTERACTIVE_SEEN true
+RUN echo 'gem: --no-document --no-ri' > /usr/local/etc/gemrc
 
-#ENV LC_ALL en_US.UTF-8
-#ENV LANG en_US.UTF-8
+ENV RUBY_MAJOR_VERSION 2.1
+ENV RUBY_VERSION 2.1.5
+ENV RUBY_TARBALL_MD5 a7c3e5fec47eff23091b566e9e1dac1b
 
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
+RUN apt-get -q update && \
+  DEBIAN_FRONTEND=noninteractive apt-get -qy --no-install-recommends install \
     build-essential \
-    ruby \
+    git \
+    wget \
+    curl \
+    ca-certificates \
+    libffi-dev \
+    libreadline6-dev \
     libssl-dev \
-    libreadline-dev \
-    libxslt1-dev \
-    libxml2-dev \
-    libcurl4-openssl-dev \
-    zlib1g-dev \
-    libexpat1-dev \
-    libicu-dev
+    libyaml-dev \
+    ssh \
+    zlib1g-dev && \
+  curl -s -O http://cache.ruby-lang.org/pub/ruby/$RUBY_MAJOR_MINOR_VERSION/ruby-$RUBY_VERSION.tar.bz2 && \
+  [ $(md5sum ruby-$RUBY_VERSION.tar.bz2 | awk '{ print $1 }') = $RUBY_TARBALL_MD5 ] && \
+  tar -jxf ruby-$RUBY_VERSION.tar.bz2 && \
+  cd ruby-$RUBY_VERSION && \
+  ./configure --disable-install-doc && \
+  make -j$(nproc) && \
+  make install && \
+  cd .. && \
+  rm -rf ruby-$RUBY_VERSION ruby-$RUBY_VERSION.tar.bz2 /tmp/* /var/tmp/* && \
+  apt-get -qy clean autoclean autoremove && \
+  rm -rf /var/lib/{apt,dpkg,cache,log}/
 
-RUN LANG="en_US.UTF-8" LC_ALL="en_US.UTF-8" gem install fpm-cookery
+RUN gem install fpm-cookery
+
