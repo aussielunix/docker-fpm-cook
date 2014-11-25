@@ -18,4 +18,4 @@ RUN apt-get update && apt-get install -y \
     libexpat1-dev \
     libicu-dev
 
-RUN gem install fpm-cookery
+RUN gem update rdoc && gem install fpm-cookery
