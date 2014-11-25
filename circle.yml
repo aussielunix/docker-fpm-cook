@@ -5,7 +5,7 @@ machine:
 dependencies:
   override:
     - docker info
-    - docker build -t aussielunix/ubuntu-fpm-cook .
+    - docker build -t aussielunix/ubuntu-fpm-cook:14.04 .
 
 test:
   override:
