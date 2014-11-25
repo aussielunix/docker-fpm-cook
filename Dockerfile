@@ -4,7 +4,7 @@ MAINTAINER Mick Pollard <aussielunix@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true
 
-RUN locale-gen en_AU.UTF-8
+RUN locale-gen en_US.UTF-8
 RUN dpkg-reconfigure locales
 
 
