@@ -5,7 +5,7 @@ machine:
 dependencies:
   override:
     - docker info
-    - docker build -t aussielunix/ubuntu-fpm-cook:14.04 .
+    - docker build -t aussielunix/docker-fpm-cook:ubuntu_14.04 .
 
 test:
   override:
@@ -16,4 +16,4 @@ deployment:
     branch: master
     commands:
       - cat .dockercfg.template | sed "s/EMAIL/$DOCKER_EMAIL/;s/AUTH/$DOCKER_AUTH/" > ~/.dockercfg
-      - docker push aussielunix/ubuntu-fpm-cook
+      - docker push aussielunix/docker-fpm-cook:ubuntu_14.04
