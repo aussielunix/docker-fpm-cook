@@ -15,6 +15,5 @@ deployment:
   hub:
     branch: master
     commands:
-      - sed "s/<EMAIL>/$DOCKER_EMAIL/;s/<AUTH>/$DOCKER_AUTH/" \
-              < .dockercfg.template > ~/.dockercfg
+      - cat .dockercfg.template | sed "s/EMAIL/$DOCKER_EMAIL/;s/AUTH/$DOCKER_AUTH/" > ~/.dockercfg
       - docker push aussielunix/ubuntu-fpm-cook
