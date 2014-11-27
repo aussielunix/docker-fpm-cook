@@ -13,6 +13,7 @@ RUN apt-get -q update && \
     git \
     wget \
     curl \
+    unzip \
     ca-certificates \
     libffi-dev \
     libreadline6-dev \
