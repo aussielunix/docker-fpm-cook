@@ -5,15 +5,15 @@ machine:
 dependencies:
   override:
     - docker info
-    - docker build -t aussielunix/docker-fpm-cook:ubuntu_14.04 .
+    - docker build -t aussielunix/fpm-cook:ubuntu_14.04 .
 
 test:
   override:
-    - docker run -d aussielunix/ubuntu-fpm-cook; sleep 2
+    - docker run -d aussielunix/fpm-cook:ubuntu_14.04; sleep 2
 
 deployment:
   hub:
     branch: master
     commands:
       - cat .dockercfg.template | sed "s/EMAIL/$DOCKER_EMAIL/;s/AUTH/$DOCKER_AUTH/" > ~/.dockercfg
-      - docker push aussielunix/docker-fpm-cook:ubuntu_14.04
+      - docker push aussielunix/fpm-cook:ubuntu_14.04
