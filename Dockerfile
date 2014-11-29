@@ -1,7 +1,7 @@
 FROM ubuntu:14.04.1
 MAINTAINER Mick Pollard <aussielunix@gmail.com>
 
-VOLUME ['/data/', '/pkg/']
+VOLUME ["/data/","/pkg/"]
 WORKDIR /data
 
 RUN echo 'gem: --no-document --no-ri' > /usr/local/etc/gemrc
