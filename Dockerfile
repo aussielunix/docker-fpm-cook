@@ -38,4 +38,4 @@ RUN apt-get update && \
 
 RUN gem install fpm-cookery package_cloud bundler
 
-ENTRYPOINT ["fpm-cook", "package", "-t deb", "-p ubuntu", "recipe.rb", "--pkg-dir /pkg/"]
+ENTRYPOINT ["fpm-cook", "package", "--pkg-dir=/pkg/", "-t deb", "-p ubuntu", "recipe.rb"]
