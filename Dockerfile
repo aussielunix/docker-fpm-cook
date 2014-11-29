@@ -36,5 +36,5 @@ RUN apt-get update && \
       apt-get -y clean autoclean autoremove && \
       rm -rf /var/lib/{apt,dpkg,cache,log}/
 
-RUN gem install fpm -v && fpm-cookery -v 0.24.0 && gem install package_cloud
+RUN gem install fpm-cookery -v 0.24.0 && gem install package_cloud
 CMD ["fpm-cook", "package", "--pkg-dir=/pkg/", "-t deb", "-p ubuntu", "recipe.rb"]
