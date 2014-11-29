@@ -33,5 +33,5 @@ RUN apt-get -q update && \
   apt-get -qy clean autoclean autoremove && \
   rm -rf /var/lib/{apt,dpkg,cache,log}/
 
-RUN gem install fpm-cookery
+RUN gem install fpm-cookery package_cloud
 
