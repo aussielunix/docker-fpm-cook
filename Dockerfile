@@ -37,5 +37,6 @@ RUN apt-get update && \
       rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 RUN gem install fpm-cookery package_cloud bundler
+RUN mkdir /data
 
 CMD ["fpm-cook", "package", "--pkg-dir=/pkg/", "-t deb", "-p ubuntu", "recipe.rb"]
