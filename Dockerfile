@@ -1,7 +1,7 @@
 FROM ubuntu:14.04.1
 MAINTAINER Mick Pollard <aussielunix@gmail.com>
 
-VOLUME ["data/","pkg/"]
+VOLUME ["/home/ubuntu/data/","/home/ubuntu/pkg/"]
 
 WORKDIR data/
 
