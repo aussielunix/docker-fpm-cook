@@ -1,7 +1,7 @@
 FROM ubuntu:14.04.1
 MAINTAINER Mick Pollard <aussielunix@gmail.com>
 
-VOLUME ["/home/ubuntu/data/","/home/ubuntu/pkg/"]
+VOLUME ["/data/","/pkg/"]
 
 WORKDIR data/
 
@@ -38,4 +38,4 @@ RUN apt-get update && \
       rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 RUN gem install fpm-cookery -v 0.24.0 && gem install package_cloud
-CMD ["fpm-cook", "package", "--pkg-dir=pkg/", "-t deb", "-p ubuntu", "recipe.rb"]
+CMD ["fpm-cook", "package", "-t deb", "-p ubuntu" ]
