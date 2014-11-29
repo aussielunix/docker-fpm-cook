@@ -3,7 +3,7 @@ MAINTAINER Mick Pollard <aussielunix@gmail.com>
 
 VOLUME ["/data/","/pkg/"]
 
-WORKDIR data/
+WORKDIR /data
 
 RUN echo 'gem: --no-document --no-ri' > /usr/local/etc/gemrc
 
