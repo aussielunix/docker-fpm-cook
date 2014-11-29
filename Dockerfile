@@ -6,9 +6,9 @@ WORKDIR /data
 
 RUN echo 'gem: --no-document --no-ri' > /usr/local/etc/gemrc
 
-ENV RUBY_MAJOR_VERSION 1.9
-ENV RUBY_VERSION 1.9.3-p551
-ENV RUBY_TARBALL_MD5 0d8212f7bc89bab8ef521b04cd9df278
+ENV RUBY_MAJOR_VERSION 2.0
+ENV RUBY_VERSION 2.0.0-p598
+ENV RUBY_TARBALL_MD5 e043a21ce0d138fd408518a80aa31bba
 
 RUN apt-get update && \
       apt-get -y install \
