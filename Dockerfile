@@ -1,7 +1,8 @@
 FROM ubuntu:14.04.1
 MAINTAINER Mick Pollard <aussielunix@gmail.com>
 
-VOLUME /pkg
+VOLUME ['/data/', '/pkg/']
+WORKDIR /data
 
 RUN echo 'gem: --no-document --no-ri' > /usr/local/etc/gemrc
 
@@ -36,3 +37,5 @@ RUN apt-get update && \
       rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 RUN gem install fpm-cookery package_cloud bundler
+
+ENTRYPOINT ["fpm-cook", "package", "-t deb", "-p ubuntu", "recipe.rb", "--pkg-dir /pkg/"]
