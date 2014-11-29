@@ -6,9 +6,9 @@ WORKDIR /data
 
 RUN echo 'gem: --no-document --no-ri' > /usr/local/etc/gemrc
 
-ENV RUBY_MAJOR_VERSION 2.1
-ENV RUBY_VERSION 2.1.5
-ENV RUBY_TARBALL_MD5 a7c3e5fec47eff23091b566e9e1dac1b
+ENV RUBY_MAJOR_VERSION 1.9
+ENV RUBY_VERSION 1.9.3-p551
+ENV RUBY_TARBALL_MD5 0d8212f7bc89bab8ef521b04cd9df278
 
 RUN apt-get update && \
       apt-get -y install \
@@ -24,9 +24,9 @@ RUN apt-get update && \
       libyaml-dev \
       ssh \
       zlib1g-dev && \
-      curl -s -O http://cache.ruby-lang.org/pub/ruby/$RUBY_MAJOR_MINOR_VERSION/ruby-$RUBY_VERSION.tar.bz2 && \
-      [ $(md5sum ruby-$RUBY_VERSION.tar.bz2 | awk '{ print $1 }') = $RUBY_TARBALL_MD5 ] && \
-      tar -jxf ruby-$RUBY_VERSION.tar.bz2 && \
+      curl -s -O http://cache.ruby-lang.org/pub/ruby/$RUBY_MAJOR_VERSION/ruby-$RUBY_VERSION.tar.gz && \
+      [ $(md5sum ruby-$RUBY_VERSION.tar.gz | awk '{ print $1 }') = $RUBY_TARBALL_MD5 ] && \
+      tar -zxf ruby-$RUBY_VERSION.tar.gz && \
       cd ruby-$RUBY_VERSION && \
       ./configure --disable-install-doc && \
       make -j$(nproc) && \
@@ -36,5 +36,5 @@ RUN apt-get update && \
       apt-get -y clean autoclean autoremove && \
       rm -rf /var/lib/{apt,dpkg,cache,log}/
 
-RUN gem install fpm-cookery -v 0.24.0 package_cloud
+RUN gem install fpm -v && fpm-cookery -v 0.24.0 && gem install package_cloud
 CMD ["fpm-cook", "package", "--pkg-dir=/pkg/", "-t deb", "-p ubuntu", "recipe.rb"]
