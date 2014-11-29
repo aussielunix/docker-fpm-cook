@@ -1,7 +1,8 @@
 FROM ubuntu:14.04.1
 MAINTAINER Mick Pollard <aussielunix@gmail.com>
 
-VOLUME /workdir
+VOLUME /pkg
+
 RUN echo 'gem: --no-document --no-ri' > /usr/local/etc/gemrc
 
 ENV RUBY_MAJOR_VERSION 2.1
