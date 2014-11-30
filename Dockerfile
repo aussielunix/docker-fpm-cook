@@ -40,4 +40,4 @@ RUN apt-get update && \
 RUN gem install fpm-cookery
 
 ENTRYPOINT fpm-cook package -t deb -p ubuntu
-CMD recipe.rb
+CMD ["recipe.rb"]
