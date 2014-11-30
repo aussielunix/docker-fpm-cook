@@ -37,5 +37,7 @@ RUN apt-get update && \
       apt-get -y clean autoclean autoremove && \
       rm -rf /var/lib/{apt,dpkg,cache,log}/
 
-RUN gem install fpm-cookery -v 0.24.0
-CMD ["fpm-cook", "package", "-t deb", "-p ubuntu", "recipe.rb" ]
+RUN gem install fpm-cookery
+
+ENTRYPOINT ["fpm-cook", "package", "-t deb", "-p ubuntu"]
+CMD ["recipe.rb"]
