@@ -38,6 +38,4 @@ RUN apt-get update && \
       rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 RUN gem install fpm-cookery
-
-ENTRYPOINT ["fpm-cook", "package", "-t deb", "-p ubuntu"]
-CMD ["recipe.rb"]
+CMD fpm-cook package -t deb -p ubuntu recipe.rb
