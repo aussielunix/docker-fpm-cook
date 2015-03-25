@@ -17,8 +17,3 @@ deployment:
     commands:
       - cat .dockercfg.template | sed "s/EMAIL/$DOCKER_EMAIL/;s/AUTH/$DOCKER_AUTH/" > ~/.dockercfg
       - docker push aussielunix/fpm-cook:ubuntu_12.04
-  trusty:
-    branch: master
-    commands:
-      - cat .dockercfg.template | sed "s/EMAIL/$DOCKER_EMAIL/;s/AUTH/$DOCKER_AUTH/" > ~/.dockercfg
-      - docker push aussielunix/fpm-cook:ubuntu_14.04
