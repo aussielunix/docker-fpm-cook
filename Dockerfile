@@ -1,4 +1,4 @@
-FROM ubuntu:14.04.1
+FROM ubuntu:12.04.5
 MAINTAINER Mick Pollard <aussielunix@gmail.com>
 
 VOLUME ["/data/","/pkg/"]
